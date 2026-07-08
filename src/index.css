@@ -1,0 +1,672 @@
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 40% 8%;
+    --foreground: 0 0% 100%;
+    --card: 210 35% 12%;
+    --card-foreground: 0 0% 100%;
+    --popover: 210 35% 10%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 355 78% 56%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 205 38% 47%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 210 30% 20%;
+    --muted-foreground: 0 0% 60%;
+    --accent: 168 56% 40%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 210 30% 20%;
+    --input: 210 30% 20%;
+    --ring: 355 78% 56%;
+    --radius: 2px;
+  }
+
+  body {
+    font-family: 'Chakra Petch', sans-serif;
+    overflow: hidden;
+    background: #0d1b2a;
+    color: #fff;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: none;
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  * {
+    @apply border-border;
+  }
+}
+
+/* ==================== SCROLLBAR ==================== */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #457b9d; border-radius: 1px; }
+::-webkit-scrollbar-thumb:hover { background: #e63946; }
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fade-in { animation: fadeIn 0.5s ease-out forwards; }
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-12px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+.slide-in { animation: slideIn 0.4s ease-out forwards; }
+
+@keyframes polyPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes polySpin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes polyCountdown {
+  0% { transform: scale(2.5); opacity: 0; }
+  50% { transform: scale(0.9); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes goldPop {
+  0% { transform: scale(0); opacity: 0; }
+  60% { transform: scale(1.15); }
+  100% { transform: scale(1); opacity: 1; }
+}
+.gold-pop { animation: goldPop 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+
+@keyframes rolling {
+  to { transform: rotate(-360deg); }
+}
+
+@keyframes road-move {
+  from { transform: translateX(-140%); }
+  to { transform: translateX(100%); }
+}
+
+@keyframes loading {
+  0% { width: 0; }
+  80% { width: 100%; }
+  100% { width: 100%; }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+@keyframes keyframes-fill {
+  0% { transform: scale(0); opacity: 0; }
+  50% { transform: scale(1.1); }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px) rotate(-2deg); }
+  50% { transform: translateX(5px) rotate(2deg); }
+  75% { transform: translateX(-3px); }
+}
+
+/* ==================== POLY BUTTON ==================== */
+.poly-btn {
+  position: relative;
+  padding: 14px 28px;
+  border: 2px solid #e63946;
+  border-radius: 2px;
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: all 0.15s ease;
+  color: #fff;
+  background: #1d3557;
+  box-shadow: 3px 3px 0 rgba(230, 57, 70, 0.4);
+  z-index: 1;
+  clip-path: polygon(0 0, 100% 0, 100% 88%, 96% 100%, 0 100%);
+  pointer-events: auto;
+}
+.poly-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0 rgba(230, 57, 70, 0.6);
+  background: #264653;
+}
+.poly-btn:active {
+  transform: translate(1px, 1px);
+  box-shadow: 2px 2px 0 rgba(230, 57, 70, 0.3);
+}
+.poly-btn.blue {
+  border-color: #457b9d;
+  box-shadow: 3px 3px 0 rgba(69, 123, 157, 0.4);
+}
+.poly-btn.blue:hover { box-shadow: 5px 5px 0 rgba(69, 123, 157, 0.6); }
+.poly-btn.green {
+  border-color: #2a9d8f;
+  box-shadow: 3px 3px 0 rgba(42, 157, 143, 0.3);
+}
+.poly-btn.green:hover { box-shadow: 5px 5px 0 rgba(42, 157, 143, 0.5); }
+.poly-btn.gold {
+  border-color: #ffd700;
+  color: #ffd700;
+  box-shadow: 3px 3px 0 rgba(255, 215, 0, 0.3);
+}
+.poly-btn.gold:hover { box-shadow: 5px 5px 0 rgba(255, 215, 0, 0.5); }
+.poly-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none !important;
+  filter: grayscale(0.5);
+}
+
+/* ==================== POLY INPUT ==================== */
+.poly-input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 2px solid #457b9d;
+  border-radius: 2px;
+  background: rgba(10, 20, 35, 0.9);
+  color: #fff;
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  outline: none;
+  transition: all 0.2s ease;
+  margin-bottom: 12px;
+  letter-spacing: 0.5px;
+  clip-path: polygon(0 0, 100% 0, 100% 92%, 98% 100%, 0 100%);
+}
+.poly-input:focus {
+  border-color: #e63946;
+  box-shadow: 0 0 0 2px rgba(230, 57, 70, 0.15);
+  background: rgba(15, 30, 50, 0.95);
+}
+.poly-input::placeholder { color: rgba(255, 255, 255, 0.3); }
+
+/* ==================== POLY CARD ==================== */
+.poly-card {
+  background: rgba(13, 27, 42, 0.95);
+  border: 2px solid #e63946;
+  border-radius: 4px;
+  box-shadow: 6px 6px 0 rgba(230, 57, 70, 0.3), inset 0 0 30px rgba(230, 57, 70, 0.03);
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+}
+.poly-card::after {
+  content: '';
+  position: absolute;
+  top: -2px; right: -2px;
+  width: 0; height: 0;
+  border-style: solid;
+  border-width: 0 20px 20px 0;
+  border-color: transparent #e63946 transparent transparent;
+}
+.poly-card.alt {
+  border-color: #457b9d;
+  box-shadow: 6px 6px 0 rgba(69, 123, 157, 0.3), inset 0 0 30px rgba(69, 123, 157, 0.03);
+}
+.poly-card.alt::after { border-color: transparent #457b9d transparent transparent; }
+.poly-card.gold {
+  border-color: #ffd700;
+  box-shadow: 6px 6px 0 rgba(255, 215, 0, 0.2), inset 0 0 30px rgba(255, 215, 0, 0.03);
+}
+.poly-card.gold::after { border-color: transparent #ffd700 transparent transparent; }
+
+/* ==================== 3D RED BUTTON (From Uiverse) ==================== */
+.uiverse-button {
+  cursor: pointer;
+  padding: 12px 18px;
+  border-radius: 30px;
+  border: 5px solid #e50000;
+  display: inline-block;
+  overflow: hidden;
+  background: red;
+  box-shadow:
+    inset 6px 6px 10px rgba(255, 255, 255, 0.6),
+    inset -6px -6px 10px rgba(0, 0, 0, 0.3),
+    2px 2px 10px rgba(0, 0, 0, 0.3),
+    -2px -2px 10px rgba(255, 255, 255, 0.5);
+  transition: box-shadow 0.3s ease, transform 0.1s ease;
+}
+.uiverse-button span {
+  font-weight: 900;
+  font-size: 24px;
+  color: #db0000;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.4), -1px -1px 1px rgba(0, 0, 0, 0.4);
+  position: relative;
+  display: inline-block;
+  transition: transform 0.3s ease-out;
+  z-index: 1;
+  padding: 0px 4px;
+}
+.uiverse-button:hover span { color: #d30000; }
+.uiverse-button:active span {
+  color: #f30000;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.5), -1px -1px 2px rgba(0, 0, 0, 0.5);
+}
+.uiverse-button span:hover { transform: translateY(-7px); }
+.uiverse-button:active {
+  box-shadow: inset 2px 2px 1px rgba(0, 0, 0, 0.3), inset -2px -2px 1px rgba(255, 255, 255, 0.5);
+  transform: scale(0.98);
+}
+
+/* ==================== RACE BUTTON (From Uiverse) ==================== */
+.carbutton {
+  width: 200px;
+  height: 70px;
+  padding: 20px;
+  background: #212121;
+  border: 6px double #e8e8e8;
+  transition: 0.2s;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.carbutton .caption {
+  color: #e8e8e8;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 20px;
+  transition: 0.2s;
+}
+.carbutton .car-icon {
+  fill: #e8e8e8;
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%) translateX(-150px);
+  transition: 0.2s ease-in-out;
+  opacity: 0;
+}
+.carbutton:hover .caption { opacity: 0; }
+.carbutton:hover .car-icon {
+  opacity: 1;
+  transform: translateY(-50%) translateX(60px);
+}
+.carbutton:active { transform: scale(0.98); }
+
+/* ==================== PLAY/PAUSE TOGGLE (From Uiverse) ==================== */
+.playpause-container {
+  --color: white;
+  --size: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  font-size: var(--size);
+  user-select: none;
+  fill: var(--color);
+  width: var(--size);
+  height: var(--size);
+}
+.playpause-container .play-icon {
+  position: absolute;
+  animation: keyframes-fill 0.3s;
+}
+.playpause-container .pause-icon {
+  position: absolute;
+  display: none;
+  animation: keyframes-fill 0.3s;
+}
+.playpause-container input:checked ~ .play-icon { display: none; }
+.playpause-container input:checked ~ .pause-icon { display: block; }
+.playpause-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* ==================== TOGGLE SWITCH (From Uiverse) ==================== */
+.uiverse-switch {
+  font-size: 17px;
+  position: relative;
+  display: inline-block;
+  width: 3.5em;
+  height: 2em;
+}
+.uiverse-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.uiverse-switch .slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background-color: rgb(182, 182, 182);
+  transition: .4s;
+  border-radius: 10px;
+}
+.uiverse-switch .slider::before {
+  position: absolute;
+  content: "";
+  height: 1.4em;
+  width: 1.4em;
+  border-radius: 8px;
+  left: 0.3em;
+  bottom: 0.3em;
+  background-color: rgb(255, 255, 255);
+  transition: .4s;
+}
+.uiverse-switch input:checked + .slider {
+  background-color: #21cc4c;
+}
+.uiverse-switch input:checked + .slider::before {
+  transform: translateX(1.5em);
+}
+
+/* ==================== VOLUME SLIDER (From Uiverse) ==================== */
+.volume-slider-container {
+  --slider-width: 100%;
+  --slider-height: 6px;
+  --slider-bg: rgb(82, 82, 82);
+  --level-color: #fff;
+  --level-transition-duration: .1s;
+  --icon-margin: 15px;
+  --icon-color: var(--slider-bg);
+  --icon-size: 25px;
+  cursor: pointer;
+  display: inline-flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  width: 100%;
+}
+.volume-slider-container .volume-icon {
+  display: inline-block;
+  margin-left: var(--icon-margin);
+  color: var(--icon-color);
+  width: var(--icon-size);
+  height: var(--icon-size);
+  flex-shrink: 0;
+}
+.volume-slider-container .level {
+  -webkit-appearance: none;
+  appearance: none;
+  width: var(--slider-width);
+  height: var(--slider-height);
+  background: var(--slider-bg);
+  overflow: hidden;
+  border-radius: 999px;
+  transition: height var(--level-transition-duration);
+  cursor: inherit;
+  outline: none;
+}
+.volume-slider-container .level::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 0;
+  height: 0;
+  box-shadow: -200px 0 0 200px var(--level-color);
+}
+.volume-slider-container .level::-moz-range-thumb {
+  width: 0;
+  height: 0;
+  border: none;
+  box-shadow: -200px 0 0 200px var(--level-color);
+}
+.volume-slider-container:hover .level {
+  height: calc(var(--slider-height) * 2);
+}
+
+/* ==================== 3D CHECKBOX (From Uiverse) ==================== */
+.cbx-3d {
+  perspective: 20px;
+  position: relative;
+  border: 2px solid #e8e8eb;
+  background: #e8e8eb;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+}
+.cbx-3d:hover { border-color: #0b76ef; }
+.cbx-3d .flip {
+  display: block;
+  transition: all 0.4s ease;
+  transform-style: preserve-3d;
+  position: relative;
+  width: 20px;
+  height: 20px;
+}
+.cbx-3d input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.cbx-3d input:checked + .flip {
+  transform: rotateY(180deg);
+}
+.cbx-3d .front, .cbx-3d .back {
+  backface-visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 2px;
+}
+.cbx-3d .front {
+  background: #fff;
+}
+.cbx-3d .back {
+  transform: rotateY(180deg);
+  background: #0b76ef;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+/* ==================== CUSTOM NICKNAME INPUT (From Uiverse) ==================== */
+.custom-input-wrapper {
+  width: 100%;
+  max-width: 320px;
+}
+.custom-input-wrapper label {
+  display: block;
+  color: #9ca3af;
+  font-size: 0.875rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+.custom-input-wrapper input {
+  font-size: 0.875rem;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 2px solid #374151;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  background: rgba(17, 24, 39, 0.8);
+  color: #fff;
+  font-family: 'Chakra Petch', sans-serif;
+  outline: none;
+}
+.custom-input-wrapper input:focus {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+  border-color: #3b82f6;
+}
+.custom-input-wrapper input:hover {
+  border-color: #6b7280;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* ==================== CAR CARD ==================== */
+.car-card {
+  background: rgba(13, 27, 42, 0.85);
+  border: 2px solid #457b9d;
+  border-radius: 2px;
+  padding: 16px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 3px 3px 0 rgba(69, 123, 157, 0.2);
+}
+.car-card:hover {
+  border-color: #e63946;
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0 rgba(230, 57, 70, 0.3);
+}
+.car-card.selected {
+  border-color: #e63946;
+  box-shadow: 3px 3px 0 rgba(230, 57, 70, 0.3);
+}
+.car-card.selected::after {
+  content: 'SELECTED';
+  position: absolute;
+  top: 8px; right: 8px;
+  font-size: 8px;
+  font-family: 'Chakra Petch', sans-serif;
+  letter-spacing: 1px;
+  color: #e63946;
+  background: rgba(230, 57, 70, 0.15);
+  padding: 3px 8px;
+  border: 1px solid rgba(230, 57, 70, 0.3);
+  font-weight: 700;
+}
+.car-card.locked {
+  opacity: 0.6;
+  filter: grayscale(0.5);
+  cursor: not-allowed;
+}
+.car-card.locked:hover {
+  transform: none;
+  border-color: #457b9d;
+  box-shadow: 3px 3px 0 rgba(69, 123, 157, 0.2);
+}
+
+/* ==================== STAT BAR ==================== */
+.stat-bar {
+  width: 100%;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 1px;
+  overflow: hidden;
+  margin-top: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.stat-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #e63946, #457b9d);
+  border-radius: 0;
+  transition: width 0.4s ease-out;
+}
+
+/* ==================== UPGRADE ROW ==================== */
+.upgrade-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 2px solid rgba(255, 255, 255, 0.05);
+  border-radius: 2px;
+  margin-bottom: 10px;
+  transition: all 0.2s ease;
+  clip-path: polygon(0 0, 100% 0, 100% 90%, 98% 100%, 0 100%);
+}
+.upgrade-row:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(230, 57, 70, 0.15);
+}
+
+/* ==================== MOBILE CONTROLS ==================== */
+.mobile-btn {
+  width: 72px;
+  height: 72px;
+  border-radius: 2px;
+  background: rgba(13, 27, 42, 0.8);
+  border: 2px solid #e63946;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  color: #e63946;
+  pointer-events: auto;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  transition: all 0.1s ease;
+  box-shadow: 3px 3px 0 rgba(230, 57, 70, 0.3);
+  clip-path: polygon(0 0, 100% 0, 100% 85%, 90% 100%, 0 100%);
+  font-family: 'Chakra Petch', sans-serif;
+  font-weight: 700;
+}
+.mobile-btn:active {
+  background: rgba(230, 57, 70, 0.3);
+  transform: scale(0.9);
+  box-shadow: 1px 1px 0 rgba(230, 57, 70, 0.3);
+}
+
+/* ==================== NOTIFICATION ==================== */
+.notification-toast {
+  position: fixed;
+  top: 75px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 12px 24px;
+  background: rgba(13, 27, 42, 0.95);
+  border: 2px solid #e63946;
+  border-radius: 2px;
+  color: #e63946;
+  font-weight: 700;
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 12px;
+  letter-spacing: 1px;
+  z-index: 60;
+  animation: fadeIn 0.3s ease-out;
+  box-shadow: 3px 3px 0 rgba(230, 57, 70, 0.2);
+  clip-path: polygon(0 0, 100% 0, 100% 85%, 95% 100%, 0 100%);
+}
+
+/* ==================== GARAGE 3D PREVIEW ==================== */
+.car-preview-container {
+  width: 100%;
+  height: 120px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 2px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 768px) {
+  .poly-card { padding: 18px; }
+  .mobile-controls { display: flex !important; }
+  .speed-display { font-size: 36px !important; }
+  .garage-grid { grid-template-columns: 1fr 1fr !important; }
+}
+@media (max-width: 480px) {
+  .garage-grid { grid-template-columns: 1fr !important; }
+}

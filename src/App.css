@@ -1,0 +1,417 @@
+/* Low Poly Race - Game Styles */
+
+#root {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.game-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: #0d1b2a;
+}
+
+.canvas-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.canvas-container canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.ui-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.ui-layer > * {
+  pointer-events: auto;
+}
+
+/* Screen base */
+.game-screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(8, 15, 25, 0.92);
+  z-index: 20;
+  overflow-y: auto;
+  padding: 20px;
+}
+
+.game-screen.active {
+  display: flex;
+}
+
+/* Gold Display */
+.gold-display {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: rgba(13, 27, 42, 0.95);
+  border: 2px solid #ffd700;
+  border-radius: 2px;
+  font-weight: 700;
+  color: #ffd700;
+  font-size: 17px;
+  font-family: 'Chakra Petch', sans-serif;
+  z-index: 20;
+  box-shadow: 3px 3px 0 rgba(255, 215, 0, 0.2);
+  clip-path: polygon(0 0, 100% 0, 100% 85%, 95% 100%, 0 100%);
+  pointer-events: auto;
+}
+
+/* HUD */
+.hud {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: none;
+  pointer-events: none;
+  z-index: 15;
+}
+
+.hud.visible {
+  display: block;
+}
+
+.progress-container {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50%;
+  max-width: 450px;
+  height: 12px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 2px solid #457b9d;
+  border-radius: 2px;
+  overflow: hidden;
+  clip-path: polygon(0 0, 100% 0, 100% 70%, 98% 100%, 0 100%);
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #e63946, #457b9d);
+  transition: width 0.1s linear;
+}
+
+.progress-opponent {
+  position: absolute;
+  top: 0;
+  width: 4px;
+  height: 100%;
+  background: #2a9d8f;
+  box-shadow: 0 0 6px rgba(42, 157, 143, 0.6);
+  transition: left 0.1s linear;
+}
+
+.hud-info {
+  position: absolute;
+  top: 38px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 20px;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 600;
+}
+
+.speed-display {
+  position: absolute;
+  bottom: 85px;
+  right: 20px;
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 44px;
+  font-weight: 700;
+  color: #2a9d8f;
+  text-shadow: 2px 2px 0 rgba(42, 157, 143, 0.2);
+  letter-spacing: 2px;
+}
+
+.speed-label {
+  position: absolute;
+  bottom: 66px;
+  right: 20px;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-weight: 600;
+}
+
+/* Countdown */
+.countdown-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  pointer-events: none;
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.countdown-overlay.visible {
+  display: flex;
+}
+
+.countdown-number {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 110px;
+  font-weight: 700;
+  color: #e63946;
+  text-shadow: 4px 4px 0 rgba(230, 57, 70, 0.3);
+  animation: polyCountdown 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Pause Overlay */
+.pause-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 40;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.pause-overlay.visible {
+  display: flex;
+}
+
+/* Mobile Controls */
+.mobile-controls {
+  position: absolute;
+  bottom: 24px;
+  width: 100%;
+  display: none;
+  justify-content: space-between;
+  padding: 0 24px;
+  pointer-events: none;
+  z-index: 30;
+}
+
+/* Back Button */
+.back-btn {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  padding: 10px 18px;
+  font-size: 12px;
+  z-index: 20;
+}
+
+/* Version Tag */
+.version-tag {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.2);
+  letter-spacing: 2px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* Screen Title */
+.screen-title {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 26px;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: #e63946;
+  text-align: center;
+  text-shadow: 2px 2px 0 rgba(230, 57, 70, 0.2);
+}
+
+.screen-subtitle {
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 20px;
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-align: center;
+  font-weight: 500;
+}
+
+/* Garage Grid */
+.garage-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  max-width: 900px;
+  width: 92%;
+  max-height: 55vh;
+  overflow-y: auto;
+  padding: 8px;
+}
+
+/* Game Title */
+.game-title {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: clamp(32px, 6vw, 56px);
+  font-weight: 700;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: #e63946;
+  margin-bottom: 4px;
+  text-shadow: 3px 3px 0 rgba(230, 57, 70, 0.3);
+  text-align: center;
+  line-height: 1.1;
+}
+
+.game-subtitle {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 13px;
+  letter-spacing: 4px;
+  margin-bottom: 36px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* Menu Buttons */
+.menu-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 280px;
+}
+
+.menu-buttons .poly-btn {
+  width: 100%;
+  text-align: center;
+  padding: 16px;
+  font-size: 14px;
+}
+
+/* Wallet */
+.wallet-balance {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 44px;
+  font-weight: 700;
+  color: #ffd700;
+  margin: 14px 0;
+  text-shadow: 3px 3px 0 rgba(255, 215, 0, 0.2);
+}
+
+.wallet-usd {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 24px;
+  font-family: 'Chakra Petch', sans-serif;
+  font-weight: 600;
+}
+
+/* Winner text */
+.winner-text {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 40px;
+  font-weight: 700;
+  margin-bottom: 14px;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+}
+
+.winner-text.win {
+  color: #2a9d8f;
+  text-shadow: 3px 3px 0 rgba(42, 157, 143, 0.3);
+}
+
+.winner-text.lose {
+  color: #e63946;
+  text-shadow: 3px 3px 0 rgba(230, 57, 70, 0.3);
+}
+
+/* Gold earned */
+.gold-earned {
+  font-size: 22px;
+  color: #ffd700;
+  margin-bottom: 24px;
+  font-family: 'Chakra Petch', sans-serif;
+  font-weight: 700;
+  text-shadow: 2px 2px 0 rgba(255, 215, 0, 0.2);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .progress-container {
+    width: 70%;
+  }
+  .speed-display {
+    font-size: 36px;
+    bottom: 115px;
+    right: 16px;
+  }
+  .speed-label {
+    bottom: 96px;
+    right: 16px;
+  }
+  .gold-display {
+    top: 12px;
+    right: 12px;
+    padding: 8px 14px;
+    font-size: 15px;
+  }
+  .garage-grid {
+    max-height: 42vh;
+    grid-template-columns: 1fr 1fr;
+  }
+  .mobile-controls {
+    display: flex;
+  }
+  .countdown-number {
+    font-size: 80px;
+  }
+}
+
+@media (max-width: 480px) {
+  .garage-grid {
+    grid-template-columns: 1fr;
+  }
+  .game-title {
+    font-size: 36px;
+  }
+  .menu-buttons {
+    width: 90%;
+  }
+}
